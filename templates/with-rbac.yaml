@@ -17,15 +17,15 @@ spec:
     spec:
       serviceAccountName: nginx-ingress-serviceaccount
       # hostNetwork: true
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values: 
-                - vmidoctest8
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: kubernetes.io/hostname
+#                operator: In
+#                values: 
+#                - vmidoctest8
       containers:
         - name: nginx-ingress-controller
           image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.11.0
@@ -71,3 +71,5 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
+      nodeSelector:
+        kubernetes.io/hostname: vmidoctest8 
